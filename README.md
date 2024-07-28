@@ -31,7 +31,12 @@
 5. **Обработка текстового файла:**
 
 Создайте текстовый файл с несколькими строками текста. Напишите скрипт, который будет читать файл и выдавать каждую строку в обратном порядке.
-
+```sh
+path="/path/to/the/text"
+while IFS= read line; do
+    echo "$line" | rev
+done < "$path"
+```
   
 
 6. **Автоматизация резервного копирования:**
@@ -49,8 +54,22 @@
 8. **Создание случайных паролей:**
 
 Напишите скрипт, который будет генерировать случайные пароли заданной длины и сохранять их в файл.
+```sh
+#!/bin/bash
+echo "enter a number of lengths"
+read length
+password=""
+arr=(\! \@ \# \$ \% \& \* \_ \- a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z)
 
-  9. **Подсчет файлов:**
+for i in $(seq 1 $length); do
+  password+=${arr[$RANDOM % 61]}
+done
+
+echo $password >> password.txt
+echo "Password generation complete. The password has been saved to password.txt."
+```
+
+9. **Подсчет файлов:**
 
 Напишите скрипт, который будет использовать цикл for для подсчета количества файлов и директорий в текущей директории.
 

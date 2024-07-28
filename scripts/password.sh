@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 echo "enter a number of lengths"
 read length
 password=""
