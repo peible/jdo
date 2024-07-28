@@ -51,8 +51,18 @@ done < "$path"
 6. **Автоматизация резервного копирования:**
 
 Напишите скрипт, который будет регулярно (например, каждую неделю) создавать резервные копии определенных директорий и сохранять их с датой в имени файла.
+```sh
+#!/bin/bash
+backupFiles="file"
+backupPath="."
 
-  
+tar -czf $backupPath/bookapp_$(date +"%Y%m%d_%H%M").tar $backupFiles
+```
+```sh
+sudo crontab -e
+
+@weekly path/to/backup.sh
+```
 
 7. **Подсчет количества слов:**
 
