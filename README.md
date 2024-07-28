@@ -83,6 +83,22 @@ echo "Password generation complete. The password has been saved to password.txt.
 Напишите скрипт, который будет использовать цикл for для подсчета количества файлов и директорий в текущей директории.
 ### FOR
 ```sh
+#!/bin/bash
+list=$(ls -l | tail -n +2)
+
+files=0
+dirs=0
+IFS=$'\n'
+for line in $list; do
+    if [[ ${line:0:1} == d ]]; then
+        ((dirs++))
+    elif [[ ${line:0:1} == '-' ]]; then
+        ((files++))
+    fi
+done
+
+echo "Directories: ${dirs}"
+echo "Files: ${files}"
 
 ```
 ### WHILE
@@ -90,19 +106,18 @@ echo "Password generation complete. The password has been saved to password.txt.
 #!/bin/bash
 list=$(ls -l | tail -n +2)
 
-list_array=(0 0)
+files=0
+dirs=0
 while IFS= read -r line; do
     if [[ ${line:0:1} == d ]]; then
-        ((list_array[0]++))
+        ((dirs++))
     elif [[ ${line:0:1} == '-' ]]; then
-        ((list_array[1]++))
-    else
-        echo "err"
+        ((files++))
     fi
 done <<< "$list"
 
-echo "Directories: ${list_array[0]}"
-echo "Files: ${list_array[1]}"
+echo "Directories: ${dirs}"
+echo "Files: ${files}"
 ```
   
 
