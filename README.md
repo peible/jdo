@@ -81,7 +81,29 @@ echo "Password generation complete. The password has been saved to password.txt.
 9. **Подсчет файлов:**
 
 Напишите скрипт, который будет использовать цикл for для подсчета количества файлов и директорий в текущей директории.
+### FOR
+```sh
 
+```
+### WHILE
+```sh
+#!/bin/bash
+list=$(ls -l | tail -n +2)
+
+list_array=(0 0)
+while IFS= read -r line; do
+    if [[ ${line:0:1} == d ]]; then
+        ((list_array[0]++))
+    elif [[ ${line:0:1} == '-' ]]; then
+        ((list_array[1]++))
+    else
+        echo "err"
+    fi
+done <<< "$list"
+
+echo "Directories: ${list_array[0]}"
+echo "Files: ${list_array[1]}"
+```
   
 
 10. **Автоматизация задачи обновления системы:**
