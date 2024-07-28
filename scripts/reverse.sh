@@ -1,6 +1,8 @@
 #!/bin/bash
 
-path="/home/peible/scrpt/text"
+path="file"
 while IFS= read line; do
     echo "$line" | rev
 done < "$path"
+
+#tac file

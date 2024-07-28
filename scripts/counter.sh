@@ -1,16 +1,16 @@
 #!/bin/bash
 list=$(ls -l | tail -n +2)
 
-list_array=(0 0)
-while IFS= read -r line; do
+files=0
+dirs=0
+IFS=$'\n'
+for line in $list; do
     if [[ ${line:0:1} == d ]]; then
-        ((list_array[0]++))
+        ((dirs++))
     elif [[ ${line:0:1} == '-' ]]; then
-        ((list_array[1]++))
-    else
-        echo "err"
+        ((files++))
     fi
-done <<< "$list"
+done
 
-echo "Directories: ${list_array[0]}"
-echo "Files: ${list_array[1]}"
+echo "Directories: ${dirs}"
+echo "Files: ${files}"
